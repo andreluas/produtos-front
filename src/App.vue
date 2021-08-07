@@ -39,8 +39,8 @@
             <td>{{ produto.quantidade }}</td>
             <td>{{ produto.valor }}</td>
             <td>
-              <button class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
-              <button class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
+              <button @click="editar(produto)" class="waves-effect btn-small blue darken-1"><i class="material-icons">create</i></button>
+              <button @click="remover(produto)" class="waves-effect btn-small red darken-1"><i class="material-icons">delete_sweep</i></button>
             </td>
           </tr>
         </tbody>
@@ -81,15 +81,44 @@
       },
 
       salvar() {
-        Produto.salvar(this.produto).then(resposta => {
-          this.resposta = resposta
-          this.produto = {}
-          alert('Produto salvo com sucesso!')
-          this.listar()
-          this.errors = []
-        }).catch(e => {
-          this.errors = e.response.data.errors
-        })
+        if(!this.produto.id) {
+          Produto.salvar(this.produto).then(resposta => {
+            this.resposta = resposta
+            this.produto = {}
+            alert('Produto salvo com sucesso!')
+            this.listar()
+            this.errors = []
+          }).catch(e => {
+            this.errors = e.response.data.errors
+          })
+        } else {
+              Produto.salvar(this.produto).then(resposta => {
+              this.resposta = resposta
+              this.produto = {}
+              alert('Produto salvo com sucesso!')
+              this.listar()
+              this.errors = []
+            }).catch(e => {
+              this.errors = e.response.data.errors
+            })
+          }      
+      },
+
+      editar(produto) {
+        this.produto = produto
+      },
+
+      remover(produto) {
+
+        if(confirm('Deseja excluir este produto?')) {
+          Produto.apagar(produto).then(resposta => {
+            this.resposta = resposta
+            this.listar();
+            this.errors = []
+          }).catch(e => {
+            this.errors = e.response.data.errors
+          })
+        }        
       }
     }
   }
@@ -102,5 +131,9 @@
 
   #save {
     margin-bottom: 3%;
+  }
+
+  ul {
+    text-align: right;
   }
 </style>

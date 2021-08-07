@@ -9,7 +9,11 @@ export default {
         return http.post('produto', produto)
     },
 
-    atualizar(prodto) => {
-        
+    atualizar:(produto) => {
+        return http.put('produto', produto)
+    },
+
+    apagar:(produto) => {
+        return http.delete('produto', { data: produto })
     }
 }
