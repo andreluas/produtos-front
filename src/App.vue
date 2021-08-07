@@ -13,7 +13,7 @@
           <label>Quantidade</label>
           <input type="number" placeholder="QTD" v-model="produto.quantidade">
           <label>Valor</label>
-          <input type="text" placeholder="Valor" v-model="produto.quantidade">
+          <input type="text" placeholder="Valor" v-model="produto.valor">
           <button class="waves-effect waves-light btn-small" id="save">Salvar<i class="material-icons left">save</i></button>
       </form>
 
@@ -69,7 +69,8 @@
 
     methods:{
       salvar() {
-        Produto.salvar(this.produto).then(resposta=> {
+        Produto.salvar(this.produto).then(resposta => {
+          this.resposta = resposta
           alert('Produto salvo com sucesso!')
         })
       }

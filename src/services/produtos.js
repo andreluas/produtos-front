@@ -6,6 +6,6 @@ export default {
     },
 
     salvar:(produto)=> {
-        return http.post('produto')
+        return http.post('produto', produto)
     }
 }
