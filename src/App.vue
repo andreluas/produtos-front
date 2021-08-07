@@ -62,12 +62,17 @@
     },
 
     mounted() {
-      Produto.listar().then(resposta => {
-        this.produtos = resposta.data
-      })
+      this.listar()
     },
 
     methods:{
+
+      listar() {
+        Produto.listar().then(resposta => {
+          this.produtos = resposta.data
+        })
+      },
+
       salvar() {
         Produto.salvar(this.produto).then(resposta => {
           this.resposta = resposta
