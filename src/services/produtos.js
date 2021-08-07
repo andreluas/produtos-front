@@ -1,11 +1,15 @@
 import { http } from './config'
 
 export default {
-    listar:()=> {
+    listar:() => {
         return http.get('produtos')
     },
 
-    salvar:(produto)=> {
+    salvar:(produto) => {
         return http.post('produto', produto)
+    },
+
+    atualizar(prodto) => {
+        
     }
 }
