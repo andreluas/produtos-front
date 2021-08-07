@@ -76,7 +76,9 @@
       salvar() {
         Produto.salvar(this.produto).then(resposta => {
           this.resposta = resposta
+          this.produto = {}
           alert('Produto salvo com sucesso!')
+          this.listar()
         })
       }
     }
